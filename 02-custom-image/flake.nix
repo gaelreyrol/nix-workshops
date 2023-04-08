@@ -16,12 +16,16 @@
       modules = [
         ({ modulesPath, ... }: {
           imports = [
-            "${modulesPath}/installer/sd-card/sd-image-x86_64.nix"
+            "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+          ];
+
+          users.users.nixos.openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEDaOQVs/WLWCIahRTfAmolgLV2jWL6EasDM6O++rq1M"
           ];
         })
       ];
     };
 
-    packages.x86_64-linux.sdImage = self.nixosConfigurations.default.config.system.build.sdImage;
+    packages.x86_64-linux.isoImage = self.nixosConfigurations.default.config.system.build.isoImage;
   };
 }

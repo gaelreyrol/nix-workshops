@@ -1,4 +1,4 @@
-# Minimal Image
+# Minimal image
 
 Requirements:
 
@@ -140,7 +140,7 @@ To ease our workshop and not overload our brain with too much information we wil
   modules = [
     ({ modulesPath, ... }: {
       imports = [
-        "${modulesPath}/installer/sd-card/sd-image-x86_64.nix"
+        "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
       ];
     })
   ]
@@ -149,41 +149,42 @@ To ease our workshop and not overload our brain with too much information we wil
 
 This will help us to produce an image with predefined `fileSytems` and other neat configurations.
 
-Don't hesitate to have a look to the file: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/installer/sd-card/sd-image-x86_64.nix
+Don't hesitate to have a look to the file which is imported by `installation-cd-minimal.nix`: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/installer/cd-dvd/iso-image.nix
 
 Do you remember how to build a something from `nix repl`? Let's do it again, according to the module we imported:
 
 ```nix
-# To build, use:
-# nix-build nixos -I nixos-config=nixos/modules/installer/sd-card/sd-image-x86_64.nix -A config.system.build.sdImage
+# This module creates a bootable ISO image containing the given NixOS
+# configuration.  The derivation for the ISO image will be placed in
+# config.system.build.isoImage.
 ```
 
 ```repl
 :lf .
 nixosConfigurations # hit tab
 nixosConfigurations.default # again ...
-nixosConfigurations.default.config.system.build.sdImage # it's a derivation so we can build it
-:b nixosConfigurations.default.config.system.build.sdImage # build a derivation from repl is silent so you will have to wait until the build has finished
+nixosConfigurations.default.config.system.build.isoImage # it's a derivation so we can build it
+:b nixosConfigurations.default.config.system.build.isoImage # build a derivation from repl is silent so you will have to wait until the build has finished
 ```
 
 Let's add a package target:
 
 ```nix
 {
-  packages.x86_64-linux.sdImage = self.nixosConfigurations.default.config.system.build.sdImage;
+  packages.x86_64-linux.isoImage = self.nixosConfigurations.default.config.system.build.isoImage;
 }
 ```
 
 Build it from `nix build` command:
 
 ```bash
-nix build .#sdImage
+nix build .#isoImage
 ```
 
 Our image is now build and locate in the following folder:
 
 ```
-ls -la result/sd-image
+ls result/iso
 ```
 
 We now have a minimal image to use on a USB stick.
