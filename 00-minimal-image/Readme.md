@@ -1,4 +1,4 @@
-# Minimal Installer
+# Minimal Image
 
 Requirements:
 

@@ -13,7 +13,13 @@
 
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [];
+      modules = [
+        ({ modulesPath, ... }: {
+          imports = [
+            "${modulesPath}/installer/sd-card/sd-image-x86_64.nix"
+          ];
+        })
+      ];
     };
 
     packages.x86_64-linux.sdImage = self.nixosConfigurations.default.config.system.build.sdImage;

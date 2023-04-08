@@ -4,4 +4,4 @@
 
 ## Workshops
 
-- [Minimal installer](./minimal-installer/Readme.md)
+- [Minimal image](./00-minimal-image/Readme.md)
