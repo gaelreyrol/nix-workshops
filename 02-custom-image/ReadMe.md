@@ -78,4 +78,4 @@ ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no nixos@localhost -p
 cat /etc/ssh/authorized_keys.d/nixos
 ```
 
-We now have a image containing our public SSH key.
+We now have an image containing our public SSH key.

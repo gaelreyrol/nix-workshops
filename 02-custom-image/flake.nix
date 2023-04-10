@@ -27,5 +27,6 @@
     };
 
     packages.x86_64-linux.isoImage = self.nixosConfigurations.default.config.system.build.isoImage;
+    packages.x86_64-linux.vm = self.nixosConfigurations.default.config.system.build.vm;
   };
 }
