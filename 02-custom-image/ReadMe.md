@@ -8,7 +8,7 @@ Requirements:
 
 Maybe one of the first thing you might want to do when you booted your device from an image is to connect to it through SSH instead of relying on the main terminal so you can for example copy/paste commands directly from your computer.
 
-To do this we need to install OpenSSH server and add our public SSH key to the authorized keys of the main user.
+To do this we need to install an OpenSSH server and add our public SSH key to the authorized keys of the main user.
 
 We could install the package and configure it manually but instead we will be using a nixos module that will automatically do this for us.
 
@@ -17,25 +17,9 @@ This module can be searched from several places with `services.openssh`:
 - https://nixos.org/nixos/options.html
 - man configuration.nix
 
-We can see that there is an option called `services.openssh.enable`, let's use by settings it to `true`;
+We can see that there is an option called `services.openssh.enable` but fortunately with the import `"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"`, OpenSSH server is already enabled [here](https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/profiles/installation-device.nix#L71). 
 
-```nix
-{
-  modules = [
-    ({ modulesPath, ... }: {
-      imports = [
-        "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
-      ];
-
-      services.openssh.enable = true;
-    })
-  ];
-}
-```
-
-Fortunately with the import `"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"`, OpenSSH server is already enabled [here](https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/profiles/installation-device.nix#L71). 
-
-If we explore a little the code where is enable the OpenSSH service, we see that we need to add a public SSH key to the `nixos` user if we want to automatically be able to login. 
+If we explore a little bit the code where is enabled the OpenSSH service, we can see that we need to add a public SSH key to the `nixos` user if we want to automatically be able to login. 
 
 To do that search for the `authorizedKeys` word, you should find some of these options:
 
@@ -43,7 +27,7 @@ To do that search for the `authorizedKeys` word, you should find some of these o
 - `users.users.<name>.openssh.authorizedKeys.keys`
 - `users.users.<name>.openssh.authorizedKeys.keyFiles`
 
-The option `users.users.<name>.openssh.authorizedKeys.keys` is what we need, juste replace `<name>` with `nixos`:
+The option `users.users.<name>.openssh.authorizedKeys.keys` is what we need, just replace `<name>` with `nixos` which is the default user configured by our import:
 
 ```nix
 {
@@ -79,3 +63,5 @@ cat /etc/ssh/authorized_keys.d/nixos
 ```
 
 We now have an image containing our public SSH key.
+
+You can go further and pre-install packages like `tmux`, configure services or pre-configure WiFi setup.

@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "A minimal image flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";

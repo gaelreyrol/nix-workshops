@@ -2,31 +2,22 @@
 
 Requirements:
 
-- Nix
-- `experimental-features = nix-command flakes`
+- A minimal setup from this [workshop](../00-nix-installation/ReadMe.md)
 
 
 ## Steps
 
-Install Nix:
-
-```bash
-sh <(curl -L https://nixos.org/nix/install) --daemon
-```
-
-Enable some expirmental features but not so expiremental:
-
-```
-mkdir -p ~/.config/nix
-echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-```
-
-Don't forget to restart nix-daemon.
-
-Initialize flake:
+Let's initialize a flake:
 
 ```bash
 nix flake init
+```
+
+Nix create a `flake.nix` file containing a minimal setup.
+
+We need to lock our flake to define the main dependency `nixpkgs`:
+
+```bash
 nix flake lock
 ```
 
@@ -70,7 +61,7 @@ nix run nixpkgs#cowsay hello
 
 Look at the Flakes feature documentation: https://nixos.wiki/wiki/Flakes
 
-Add nixpkgs to inputs:
+Add nixpkgs channel to inputs:
 
 ```nix
 {
@@ -86,15 +77,17 @@ Update flake lock file:
 nix flake lock
 ```
 
-Create a configuration:
+To create a `system` configuration we need to use `nixpkgs.lib.nixosSystem`:
 
 ```nix
+{
   outputs = { self, nixpkgs, ... }: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [];
     };
   };
+}
 ```
 
 
@@ -120,12 +113,13 @@ To define "things" such as the `fileSystems` option in our configuration we need
 
 Each module specified will receive arguments as described here: https://nixos.wiki/wiki/NixOS_modules#Function
 
-We can either directly embded it or specify a file like so:
+We can either directly embded it or specify a file to import:
 
 ```nix
 {
+  system = "x86_64-linux";
   modules = [
-    ({ config, pkgs, ...}: {
+    ({ config, pkgs, ... }: {
       # my config
     })
     ./machine.nix
@@ -183,7 +177,7 @@ nix build .#isoImage
 
 Our image is now build and locate in the following folder:
 
-```
+```bash
 ls result/iso
 ```
 
