@@ -2,7 +2,7 @@
 
 Requirements:
 
-- Linux, MacOs, Windows (WSL2)
+- Linux, MacOS, Windows (WSL2)
 
 ## Steps
 

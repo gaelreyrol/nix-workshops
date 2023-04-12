@@ -1,9 +1,11 @@
 # Minimal image
 
+> **Warning**
+> This workshop has only been tested on NixOS and Ubuntu.
+
 Requirements:
 
 - A minimal setup from this [workshop](../00-nix-installation/ReadMe.md)
-
 
 ## Steps
 
