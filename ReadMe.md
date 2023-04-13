@@ -14,3 +14,8 @@ Each workshop contains a ReadMe that should allows the "speaker" to drive it. Fo
 3. [x] [Custom image](02-custom-image/ReadMe.md)
 4. [ ] Homemade package
 5. [ ] Standard package override
+
+## ToDo
+
+- [ ] Generate book from mdBook
+- [ ] Publish book on Github Pages
