@@ -3,7 +3,7 @@
 > **Warning**
 > This workshop has only been tested on NixOS and Ubuntu.
 
-Requirements:
+# Requirements
 
 - A minimal image from this [workshop](../01-minimal-image/ReadMe.md)
 

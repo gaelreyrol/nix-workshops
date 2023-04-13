@@ -1,6 +1,6 @@
 # Nix installation
 
-Requirements:
+## Requirements
 
 - Linux, MacOS, Windows (WSL2)
 
