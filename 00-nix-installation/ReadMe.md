@@ -4,6 +4,10 @@ Requirements:
 
 - Linux, MacOS, Windows (WSL2)
 
+## ToDo:
+
+- Try installation with [nix-installer](https://github.com/DeterminateSystems/nix-installer)
+
 ## Steps
 
 For Linux users with install Nix:
