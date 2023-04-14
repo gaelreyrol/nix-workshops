@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Minimal Image - Nix Workshops</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Zero-knowledge Nix workshops experiment.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../INTRODUCTION.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Workshops</li><li class="chapter-item expanded "><a href="../workshops/00-nix-installation.html"><strong aria-hidden="true">1.</strong> Nix Installation</a></li><li class="chapter-item expanded "><a href="../workshops/01-minimal-image.html" class="active"><strong aria-hidden="true">2.</strong> Minimal Image</a></li><li class="chapter-item expanded "><a href="../workshops/02-custom-image.html"><strong aria-hidden="true">3.</strong> Custom Image</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Homemade Package</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Package Override</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Nix Workshops</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="minimal-image"><a class="header" href="#minimal-image">Minimal image</a></h1>
+<blockquote>
+<p><strong>Warning</strong>
+This workshop has only been tested on NixOS and Ubuntu.</p>
+</blockquote>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<ul>
+<li>A minimal setup from this <a href="../00-nix-installation/ReadMe.html">workshop</a></li>
+</ul>
+<h2 id="todo"><a class="header" href="#todo">ToDo</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Try with <a href="https://github.com/nix-community/nixos-generators">nixos-generators</a></li>
+</ul>
+<h2 id="steps"><a class="header" href="#steps">Steps</a></h2>
+<p>Let's initialize a flake:</p>
+<pre><code class="language-bash">nix flake init
+</code></pre>
+<p>Nix create a <code>flake.nix</code> file containing a minimal setup.</p>
+<p>We need to lock our flake to define the main dependency <code>nixpkgs</code>:</p>
+<pre><code class="language-bash">nix flake lock
+</code></pre>
+<p>Repl exploration:</p>
+<pre><code class="language-repl">nix repl
+:lf . #Load Nix flake
+packages # hit tab for autocomple
+packages.x86_64-linux # hit tab
+
+packages.x86_64-linux.default # hit enter
+
+:e packages.x86_64-linux.default # To open derivation
+
+:b packages.x86_64-linux.default # To build derivation
+
+:q # To exit
+</code></pre>
+<p>Show package content in store:</p>
+<pre><code class="language-bash">tree /nix/store/1pry7pnxqig0n2pkl4mnhl76qlmkk6vi-hello-2.12.1
+</code></pre>
+<p>Build packages:</p>
+<pre><code class="language-bash">nix build # to build the default package
+nix build .#hello # to build the hello package
+nix build nixpkgs#cowsay #to build a package from nixpkgs
+</code></pre>
+<p>Run packages:</p>
+<pre><code class="language-bash">nix run
+nix run nixpkgs#cowsay hello
+</code></pre>
+<p>Look at the Flakes feature documentation: https://nixos.wiki/wiki/Flakes</p>
+<p>Add nixpkgs channel to inputs:</p>
+<pre><code class="language-nix">{
+  inputs = {
+    nixpkgs.url = &quot;github:NixOS/nixpkgs/nixos-22.11&quot;;
+  };
+}
+</code></pre>
+<p>Update flake lock file:</p>
+<pre><code class="language-bash">nix flake lock
+</code></pre>
+<p>To create a <code>system</code> configuration we need to use <code>nixpkgs.lib.nixosSystem</code>:</p>
+<pre><code class="language-nix">{
+  outputs = { self, nixpkgs, ... }: {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      system = &quot;x86_64-linux&quot;;
+      modules = [];
+    };
+  };
+}
+</code></pre>
+<p>Let's try to check if our configuration is valid with:</p>
+<pre><code class="language-bash">nix flake check
+</code></pre>
+<p>Output:</p>
+<pre><code>error:
+       Failed assertions:
+       - The ‘fileSystems’ option does not specify your root file system.
+       - You must set the option ‘boot.loader.grub.devices’ or 'boot.loader.grub.mirroredBoots' to make the system bootable.
+(use '--show-trace' to show detailed location information)
+</code></pre>
+<p>We need to define the <code>fileSystems</code> option and target a &quot;device&quot; (something like <code>/dev/sda</code>) to be able build a minimal <code>nixosSystem</code>.</p>
+<p>To define &quot;things&quot; such as the <code>fileSystems</code> option in our configuration we need to put them in the <code>modules</code> argument.</p>
+<p>Each module specified will receive arguments as described here: https://nixos.wiki/wiki/NixOS_modules#Function</p>
+<p>We can either directly embded it or specify a file to import:</p>
+<pre><code class="language-nix">{
+  system = &quot;x86_64-linux&quot;;
+  modules = [
+    ({ config, pkgs, ... }: {
+      # my config
+    })
+    ./machine.nix
+  ];
+}
+</code></pre>
+<p>To ease our workshop and not overload our brain with too much information we will import an installer module provided by the nixpkgs repository:</p>
+<pre><code class="language-nix">{
+  modules = [
+    ({ modulesPath, ... }: {
+      imports = [
+        &quot;${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix&quot;
+      ];
+    })
+  ]
+}
+</code></pre>
+<p>This will help us to produce an image with predefined <code>fileSytems</code> and other neat configurations.</p>
+<p>Don't hesitate to have a look to the file which is imported by <code>installation-cd-minimal.nix</code>: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/installer/cd-dvd/iso-image.nix</p>
+<p>Do you remember how to build a something from <code>nix repl</code>? Let's do it again, according to the module we imported:</p>
+<pre><code class="language-nix"># This module creates a bootable ISO image containing the given NixOS
+# configuration.  The derivation for the ISO image will be placed in
+# config.system.build.isoImage.
+</code></pre>
+<pre><code class="language-repl">:lf .
+nixosConfigurations # hit tab
+nixosConfigurations.default # again ...
+nixosConfigurations.default.config.system.build.isoImage # it's a derivation so we can build it
+:b nixosConfigurations.default.config.system.build.isoImage # build a derivation from repl is silent so you will have to wait until the build has finished
+</code></pre>
+<p>Let's add a package target:</p>
+<pre><code class="language-nix">{
+  packages.x86_64-linux.isoImage = self.nixosConfigurations.default.config.system.build.isoImage;
+}
+</code></pre>
+<p>Build it from <code>nix build</code> command:</p>
+<pre><code class="language-bash">nix build .#isoImage
+</code></pre>
+<p>Our image is now build and locate in the following folder:</p>
+<pre><code class="language-bash">ls result/iso
+</code></pre>
+<p>We now have a minimal image to use on a USB stick.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../workshops/00-nix-installation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../workshops/02-custom-image.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../workshops/00-nix-installation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../workshops/02-custom-image.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
