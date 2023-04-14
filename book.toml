@@ -1,7 +1,5 @@
 [book]
-authors = ["Gaël Reyrol"]
-language = "en"
-multilingual = false
-src = "src"
 title = "Nix Workshops"
+authors = ["Gaël Reyrol"]
 description = "Zero-knowledge Nix workshops experiment."
+language = "en"

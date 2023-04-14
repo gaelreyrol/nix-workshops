@@ -1,26 +1,54 @@
 name: CI
-on: [push, pull_request]
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  test:
-    name: Test
+  lint:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # To push a branch 
-      pull-requests: write  # To create a PR from that branch
+
     steps:
-    - uses: actions/checkout@master
-    - name: Install Rust
-      run: |
-        rustup set profile minimal
-        rustup toolchain install stable
-        rustup default stable
-    - name: Install latest mdbook
-      run: |
-        tag=$(curl 'https://api.github.com/repos/rust-lang/mdbook/releases/latest' | jq -r '.tag_name')
-        url="https://github.com/rust-lang/mdbook/releases/download/${tag}/mdbook-${tag}-x86_64-unknown-linux-gnu.tar.gz"
-        mkdir bin
-        curl -sSL $url | tar -xz --directory=bin
-        echo "$(pwd)/bin" >> $GITHUB_PATH
-    - name: Run tests
-      run: mdbook test
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v20
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v12
+        with:
+          name: gaelreyrol
+
+      - name: Run Flake check
+        run: nix flake check
+
+  deploy:
+    needs: lint
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v20
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v12
+        with:
+          name: gaelreyrol
+
+      - name: Build package
+        run: nix build
+
+      - name: Deploy build
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./result

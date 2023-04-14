@@ -18,4 +18,4 @@ Each workshop contains a ReadMe that should allows the "speaker" to drive it. Fo
 ## ToDo
 
 - [x] Generate book from mdBook
-- [ ] Publish book on Github Pages
+- [x] Publish book on Github Pages

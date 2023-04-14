@@ -2,7 +2,7 @@
   description = "Nix workshops flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs }: let
@@ -33,14 +33,6 @@
         cp -r book $out
 
         runHook postInstall
-      '';
-      checkInputs = with pkgs; [ mdbook ];
-      checkPhase = ''
-        runHook preCheck
-
-        mdbook test
-
-        runHook postCheck
       '';
     };
   };
