@@ -1,0 +1,7 @@
+[book]
+authors = ["Gaël Reyrol"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Nix Workshops"
+description = "Zero-knowledge Nix workshops experiment."
