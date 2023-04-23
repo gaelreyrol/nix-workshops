@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../INTRODUCTION.html">Introduction</a></li><li class="chapter-item expanded "><a href="../workshops/00-nix-installation.html"><strong aria-hidden="true">1.</strong> Nix Installation</a></li><li class="chapter-item expanded "><a href="../workshops/01-minimal-image.html"><strong aria-hidden="true">2.</strong> Minimal Image</a></li><li class="chapter-item expanded "><a href="../workshops/02-custom-image.html" class="active"><strong aria-hidden="true">3.</strong> Custom Image</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Homemade Package</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Package Override</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../INTRODUCTION.html">Introduction</a></li><li class="chapter-item expanded "><a href="../workshops/00-nix-installation.html"><strong aria-hidden="true">1.</strong> Nix Installation</a></li><li class="chapter-item expanded "><a href="../workshops/01-minimal-image.html"><strong aria-hidden="true">2.</strong> Minimal Image</a></li><li class="chapter-item expanded "><a href="../workshops/02-custom-image.html" class="active"><strong aria-hidden="true">3.</strong> Custom Image</a></li><li class="chapter-item expanded "><a href="../workshops/03-custom-package.html"><strong aria-hidden="true">4.</strong> Custom Package</a></li><li class="chapter-item expanded "><a href="../workshops/04-package-override.html"><strong aria-hidden="true">5.</strong> Package Override</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,13 +145,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="custom-image"><a class="header" href="#custom-image">Custom image</a></h1>
-<blockquote>
-<p><strong>Warning</strong>
-This workshop has only been tested on NixOS and Ubuntu.</p>
-</blockquote>
 <h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
 <ul>
-<li>A minimal image from this <a href="../01-minimal-image/ReadMe.html">workshop</a></li>
+<li>A minimal image from this <a href="./01-minimal-image/ReadMe.html">workshop</a></li>
 </ul>
 <h2 id="steps"><a class="header" href="#steps">Steps</a></h2>
 <p>Maybe one of the first thing you might want to do when you booted your device from an image is to connect to it through SSH instead of relying on the main terminal so you can for example copy/paste commands directly from your computer.</p>
@@ -187,7 +183,7 @@ This workshop has only been tested on NixOS and Ubuntu.</p>
 </code></pre>
 <p>Now if we build our image, we will be able to SSH on a device that booted with our image.</p>
 <p>Let's try on VM by running:</p>
-<pre><code class="language-bash">nix build .#nixosConfigurations.default.config.system.build.vm # yes you can build a VM just like that
+<pre><code class="language-bash">nix build .#nixosConfigurations.default.config.system.build.vm
 export QEMU_NET_OPTS=&quot;hostfwd=tcp::2222-:22&quot;
 ./result/bin/run-nixos-vm
 </code></pre>
@@ -206,6 +202,9 @@ cat /etc/ssh/authorized_keys.d/nixos
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next" href="../workshops/03-custom-package.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -217,6 +216,9 @@ cat /etc/ssh/authorized_keys.d/nixos
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next" href="../workshops/03-custom-package.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>

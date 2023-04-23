@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="INTRODUCTION.html">Introduction</a></li><li class="chapter-item expanded "><a href="workshops/00-nix-installation.html"><strong aria-hidden="true">1.</strong> Nix Installation</a></li><li class="chapter-item expanded "><a href="workshops/01-minimal-image.html"><strong aria-hidden="true">2.</strong> Minimal Image</a></li><li class="chapter-item expanded "><a href="workshops/02-custom-image.html"><strong aria-hidden="true">3.</strong> Custom Image</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Homemade Package</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Package Override</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="INTRODUCTION.html">Introduction</a></li><li class="chapter-item expanded "><a href="workshops/00-nix-installation.html"><strong aria-hidden="true">1.</strong> Nix Installation</a></li><li class="chapter-item expanded "><a href="workshops/01-minimal-image.html"><strong aria-hidden="true">2.</strong> Minimal Image</a></li><li class="chapter-item expanded "><a href="workshops/02-custom-image.html"><strong aria-hidden="true">3.</strong> Custom Image</a></li><li class="chapter-item expanded "><a href="workshops/03-custom-package.html"><strong aria-hidden="true">4.</strong> Custom Package</a></li><li class="chapter-item expanded "><a href="workshops/04-package-override.html"><strong aria-hidden="true">5.</strong> Package Override</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -151,7 +151,11 @@
 This is an attempt to create workshops that can be done by complete beginners without having NixOS installed but only Nix.</p>
 </blockquote>
 <p>The main idea is to provide a chain of workshops that do not require any Nix knowledge at the begining. Each step allows to talk about a little part of Nix &amp; NixOS domain without the need of a full understanding. This learn by doing approach should break down the steep learning curve of Nix.</p>
-<p>Each workshop contains a ReadMe that should allows the &quot;speaker&quot; to drive it. For now those documents are not documented enough to be done by someone that at least does not have a small Nix experience.</p>
+<p>Each workshop should allow the &quot;speaker&quot; to drive the attendees with a live code session. Those workshops are not documented enough to be led by someone that does not have at least a small experience with Nix.</p>
+<blockquote>
+<p><strong>Warning</strong>
+The workshops have only been tested on NixOS and Ubuntu.</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="nix-installation"><a class="header" href="#nix-installation">Nix installation</a></h1>
 <h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
 <ul>
@@ -184,13 +188,9 @@ Nixpkgs</li>
 Repl</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="minimal-image"><a class="header" href="#minimal-image">Minimal image</a></h1>
-<blockquote>
-<p><strong>Warning</strong>
-This workshop has only been tested on NixOS and Ubuntu.</p>
-</blockquote>
 <h2 id="requirements-1"><a class="header" href="#requirements-1">Requirements</a></h2>
 <ul>
-<li>A minimal setup from this <a href="workshops/../00-nix-installation/ReadMe.html">workshop</a></li>
+<li>A minimal setup from this <a href="workshops/./00-nix-installation/ReadMe.html">workshop</a></li>
 </ul>
 <h2 id="todo-1"><a class="header" href="#todo-1">ToDo</a></h2>
 <ul>
@@ -313,13 +313,9 @@ nixosConfigurations.default.config.system.build.isoImage # it's a derivation so 
 </code></pre>
 <p>We now have a minimal image to use on a USB stick.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="custom-image"><a class="header" href="#custom-image">Custom image</a></h1>
-<blockquote>
-<p><strong>Warning</strong>
-This workshop has only been tested on NixOS and Ubuntu.</p>
-</blockquote>
 <h2 id="requirements-2"><a class="header" href="#requirements-2">Requirements</a></h2>
 <ul>
-<li>A minimal image from this <a href="workshops/../01-minimal-image/ReadMe.html">workshop</a></li>
+<li>A minimal image from this <a href="workshops/./01-minimal-image/ReadMe.html">workshop</a></li>
 </ul>
 <h2 id="steps-2"><a class="header" href="#steps-2">Steps</a></h2>
 <p>Maybe one of the first thing you might want to do when you booted your device from an image is to connect to it through SSH instead of relying on the main terminal so you can for example copy/paste commands directly from your computer.</p>
@@ -355,7 +351,7 @@ This workshop has only been tested on NixOS and Ubuntu.</p>
 </code></pre>
 <p>Now if we build our image, we will be able to SSH on a device that booted with our image.</p>
 <p>Let's try on VM by running:</p>
-<pre><code class="language-bash">nix build .#nixosConfigurations.default.config.system.build.vm # yes you can build a VM just like that
+<pre><code class="language-bash">nix build .#nixosConfigurations.default.config.system.build.vm
 export QEMU_NET_OPTS=&quot;hostfwd=tcp::2222-:22&quot;
 ./result/bin/run-nixos-vm
 </code></pre>
@@ -365,6 +361,26 @@ cat /etc/ssh/authorized_keys.d/nixos
 </code></pre>
 <p>We now have an image containing our public SSH key.</p>
 <p>You can go further and pre-install packages like <code>tmux</code>, configure services or pre-configure WiFi setup.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-package"><a class="header" href="#custom-package">Custom package</a></h1>
+<h2 id="requirements-3"><a class="header" href="#requirements-3">Requirements</a></h2>
+<ul>
+<li>A minimal setup from this <a href="workshops/./00-nix-installation.html">workshop</a></li>
+</ul>
+<h2 id="todo-2"><a class="header" href="#todo-2">ToDo</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Create a docker image from this book with Nginx</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="package-override"><a class="header" href="#package-override">Package override</a></h1>
+<h2 id="requirements-4"><a class="header" href="#requirements-4">Requirements</a></h2>
+<ul>
+<li>A minimal setup from this <a href="workshops/./00-nix-installation.html">workshop</a></li>
+</ul>
+<h2 id="todo-3"><a class="header" href="#todo-3">ToDo</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Override a package to apply a patch</li>
+</ul>
 
                     </main>
 
