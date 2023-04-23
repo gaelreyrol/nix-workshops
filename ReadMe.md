@@ -14,3 +14,4 @@
   - [x] Custom image
   - [ ] Custom package
   - [ ] Package override
+  - [ ] Development environment
