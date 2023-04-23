@@ -17,12 +17,12 @@ We could install the package and configure it manually but instead we will be us
 
 This module can be searched from several places with `services.openssh`:
 
-- https://nixos.org/nixos/options.html
+- <https://nixos.org/nixos/options.html>
 - man configuration.nix
 
-We can see that there is an option called `services.openssh.enable` but fortunately with the import `"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"`, OpenSSH server is already enabled [here](https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/profiles/installation-device.nix#L71). 
+We can see that there is an option called `services.openssh.enable` but fortunately with the import `"${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"`, OpenSSH server is already enabled [here](https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/profiles/installation-device.nix#L71).
 
-If we explore a little bit the code where is enabled the OpenSSH service, we can see that we need to add a public SSH key to the `nixos` user if we want to automatically be able to login. 
+If we explore a little bit the code where is enabled the OpenSSH service, we can see that we need to add a public SSH key to the `nixos` user if we want to automatically be able to login.
 
 To do that search for the `authorizedKeys` word, you should find some of these options:
 

@@ -2,7 +2,7 @@
 
 [Introduction](./INTRODUCTION.md)
 
-# Workshops
+## Workshops
 
 - [Nix Installation](./workshops/00-nix-installation.md)
 - [Minimal Image](./workshops/01-minimal-image.md)

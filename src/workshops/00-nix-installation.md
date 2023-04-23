@@ -4,7 +4,7 @@
 
 - Linux, MacOS, Windows (WSL2)
 
-## ToDo:
+## ToDo
 
 - Try installation with [nix-installer](https://github.com/DeterminateSystems/nix-installer)
 

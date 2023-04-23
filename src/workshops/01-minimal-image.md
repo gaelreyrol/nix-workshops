@@ -65,7 +65,7 @@ nix run
 nix run nixpkgs#cowsay hello
 ```
 
-Look at the Flakes feature documentation: https://nixos.wiki/wiki/Flakes
+Look at the Flakes feature documentation: <https://nixos.wiki/wiki/Flakes>
 
 Add nixpkgs channel to inputs:
 
@@ -96,7 +96,6 @@ To create a `system` configuration we need to use `nixpkgs.lib.nixosSystem`:
 }
 ```
 
-
 Let's try to check if our configuration is valid with:
 
 ```bash
@@ -105,7 +104,7 @@ nix flake check
 
 Output:
 
-```
+```bash
 error:
        Failed assertions:
        - The ‘fileSystems’ option does not specify your root file system.
@@ -117,7 +116,7 @@ We need to define the `fileSystems` option and target a "device" (something like
 
 To define "things" such as the `fileSystems` option in our configuration we need to put them in the `modules` argument.
 
-Each module specified will receive arguments as described here: https://nixos.wiki/wiki/NixOS_modules#Function
+Each module specified will receive arguments as described here: <https://nixos.wiki/wiki/NixOS_modules#Function>
 
 We can either directly embded it or specify a file to import:
 
@@ -149,7 +148,7 @@ To ease our workshop and not overload our brain with too much information we wil
 
 This will help us to produce an image with predefined `fileSytems` and other neat configurations.
 
-Don't hesitate to have a look to the file which is imported by `installation-cd-minimal.nix`: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/installer/cd-dvd/iso-image.nix
+Don't hesitate to have a look to the file which is imported by `installation-cd-minimal.nix`: <https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/installer/cd-dvd/iso-image.nix>
 
 Do you remember how to build a something from `nix repl`? Let's do it again, according to the module we imported:
 
