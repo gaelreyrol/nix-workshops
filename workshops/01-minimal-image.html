@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../INTRODUCTION.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Workshops</li><li class="chapter-item expanded "><a href="../workshops/00-nix-installation.html"><strong aria-hidden="true">1.</strong> Nix Installation</a></li><li class="chapter-item expanded "><a href="../workshops/01-minimal-image.html" class="active"><strong aria-hidden="true">2.</strong> Minimal Image</a></li><li class="chapter-item expanded "><a href="../workshops/02-custom-image.html"><strong aria-hidden="true">3.</strong> Custom Image</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Homemade Package</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Package Override</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../INTRODUCTION.html">Introduction</a></li><li class="chapter-item expanded "><a href="../workshops/00-nix-installation.html"><strong aria-hidden="true">1.</strong> Nix Installation</a></li><li class="chapter-item expanded "><a href="../workshops/01-minimal-image.html" class="active"><strong aria-hidden="true">2.</strong> Minimal Image</a></li><li class="chapter-item expanded "><a href="../workshops/02-custom-image.html"><strong aria-hidden="true">3.</strong> Custom Image</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Homemade Package</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Package Override</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -192,7 +192,7 @@ nix build nixpkgs#cowsay #to build a package from nixpkgs
 <pre><code class="language-bash">nix run
 nix run nixpkgs#cowsay hello
 </code></pre>
-<p>Look at the Flakes feature documentation: https://nixos.wiki/wiki/Flakes</p>
+<p>Look at the Flakes feature documentation: <a href="https://nixos.wiki/wiki/Flakes">https://nixos.wiki/wiki/Flakes</a></p>
 <p>Add nixpkgs channel to inputs:</p>
 <pre><code class="language-nix">{
   inputs = {
@@ -217,7 +217,7 @@ nix run nixpkgs#cowsay hello
 <pre><code class="language-bash">nix flake check
 </code></pre>
 <p>Output:</p>
-<pre><code>error:
+<pre><code class="language-bash">error:
        Failed assertions:
        - The ‘fileSystems’ option does not specify your root file system.
        - You must set the option ‘boot.loader.grub.devices’ or 'boot.loader.grub.mirroredBoots' to make the system bootable.
@@ -225,7 +225,7 @@ nix run nixpkgs#cowsay hello
 </code></pre>
 <p>We need to define the <code>fileSystems</code> option and target a &quot;device&quot; (something like <code>/dev/sda</code>) to be able build a minimal <code>nixosSystem</code>.</p>
 <p>To define &quot;things&quot; such as the <code>fileSystems</code> option in our configuration we need to put them in the <code>modules</code> argument.</p>
-<p>Each module specified will receive arguments as described here: https://nixos.wiki/wiki/NixOS_modules#Function</p>
+<p>Each module specified will receive arguments as described here: <a href="https://nixos.wiki/wiki/NixOS_modules#Function">https://nixos.wiki/wiki/NixOS_modules#Function</a></p>
 <p>We can either directly embded it or specify a file to import:</p>
 <pre><code class="language-nix">{
   system = &quot;x86_64-linux&quot;;
@@ -249,7 +249,7 @@ nix run nixpkgs#cowsay hello
 }
 </code></pre>
 <p>This will help us to produce an image with predefined <code>fileSytems</code> and other neat configurations.</p>
-<p>Don't hesitate to have a look to the file which is imported by <code>installation-cd-minimal.nix</code>: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/installer/cd-dvd/iso-image.nix</p>
+<p>Don't hesitate to have a look to the file which is imported by <code>installation-cd-minimal.nix</code>: <a href="https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/installer/cd-dvd/iso-image.nix">https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/installer/cd-dvd/iso-image.nix</a></p>
 <p>Do you remember how to build a something from <code>nix repl</code>? Let's do it again, according to the module we imported:</p>
 <pre><code class="language-nix"># This module creates a bootable ISO image containing the given NixOS
 # configuration.  The derivation for the ISO image will be placed in

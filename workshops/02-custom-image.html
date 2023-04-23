@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../INTRODUCTION.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Workshops</li><li class="chapter-item expanded "><a href="../workshops/00-nix-installation.html"><strong aria-hidden="true">1.</strong> Nix Installation</a></li><li class="chapter-item expanded "><a href="../workshops/01-minimal-image.html"><strong aria-hidden="true">2.</strong> Minimal Image</a></li><li class="chapter-item expanded "><a href="../workshops/02-custom-image.html" class="active"><strong aria-hidden="true">3.</strong> Custom Image</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Homemade Package</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Package Override</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../INTRODUCTION.html">Introduction</a></li><li class="chapter-item expanded "><a href="../workshops/00-nix-installation.html"><strong aria-hidden="true">1.</strong> Nix Installation</a></li><li class="chapter-item expanded "><a href="../workshops/01-minimal-image.html"><strong aria-hidden="true">2.</strong> Minimal Image</a></li><li class="chapter-item expanded "><a href="../workshops/02-custom-image.html" class="active"><strong aria-hidden="true">3.</strong> Custom Image</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Homemade Package</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Package Override</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,11 +159,11 @@ This workshop has only been tested on NixOS and Ubuntu.</p>
 <p>We could install the package and configure it manually but instead we will be using a nixos module that will automatically do this for us.</p>
 <p>This module can be searched from several places with <code>services.openssh</code>:</p>
 <ul>
-<li>https://nixos.org/nixos/options.html</li>
+<li><a href="https://nixos.org/nixos/options.html">https://nixos.org/nixos/options.html</a></li>
 <li>man configuration.nix</li>
 </ul>
-<p>We can see that there is an option called <code>services.openssh.enable</code> but fortunately with the import <code>&quot;${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix&quot;</code>, OpenSSH server is already enabled <a href="https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/profiles/installation-device.nix#L71">here</a>. </p>
-<p>If we explore a little bit the code where is enabled the OpenSSH service, we can see that we need to add a public SSH key to the <code>nixos</code> user if we want to automatically be able to login. </p>
+<p>We can see that there is an option called <code>services.openssh.enable</code> but fortunately with the import <code>&quot;${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix&quot;</code>, OpenSSH server is already enabled <a href="https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/profiles/installation-device.nix#L71">here</a>.</p>
+<p>If we explore a little bit the code where is enabled the OpenSSH service, we can see that we need to add a public SSH key to the <code>nixos</code> user if we want to automatically be able to login.</p>
 <p>To do that search for the <code>authorizedKeys</code> word, you should find some of these options:</p>
 <ul>
 <li><code>services.openssh.authorizedKeysFiles</code></li>
