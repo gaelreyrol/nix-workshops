@@ -1,11 +1,8 @@
 # Custom image
 
-> **Warning**
-> This workshop has only been tested on NixOS and Ubuntu.
-
 ## Requirements
 
-- A minimal image from this [workshop](../01-minimal-image/ReadMe.md)
+- A minimal image from this [workshop](./01-minimal-image/ReadMe.md)
 
 ## Steps
 
@@ -53,7 +50,7 @@ Now if we build our image, we will be able to SSH on a device that booted with o
 Let's try on VM by running:
 
 ```bash
-nix build .#nixosConfigurations.default.config.system.build.vm # yes you can build a VM just like that
+nix build .#nixosConfigurations.default.config.system.build.vm
 export QEMU_NET_OPTS="hostfwd=tcp::2222-:22"
 ./result/bin/run-nixos-vm
 ```
