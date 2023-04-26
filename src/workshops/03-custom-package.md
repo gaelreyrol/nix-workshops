@@ -6,4 +6,4 @@
 
 ## ToDo
 
-- [ ] Create a docker image from this book with Nginx
+- [ ] Create a Docker image from this book with Nginx
